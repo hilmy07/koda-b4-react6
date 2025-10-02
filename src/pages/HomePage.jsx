@@ -58,7 +58,7 @@ function Homepage() {
           {loading ? (
             <p className="text-gray-500">Loading articles...</p>
           ) : (
-            articles.map((article, index) => (
+            articles.map((article) => (
               <div
                 key={article.id}
                 className="flex flex-col sm:flex-row gap-4 border-b pb-6"
