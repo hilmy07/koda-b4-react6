@@ -4,11 +4,11 @@
 
 Tampilan asli
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/007436cc-efc2-41ec-958e-7e5a34d2fcf0" />
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/c60de961-8e69-4f45-9253-e872178b84b6" />
 
 Tampilan tiruan Halaman Home
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/8a60fda3-4c20-4687-8ff2-58fddb6392b8" />
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/ac6eb6a4-bc5b-4f75-bb39-53c8aa3da45c" />
 
 Tampilan tiruan Halaman Detailpage
 
