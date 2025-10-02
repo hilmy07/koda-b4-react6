@@ -28,7 +28,7 @@ function SearchBar() {
 function Navbar() {
   const navigate = useNavigate();
   return (
-    <nav className="flex w-full fixed items-center justify-between px-6 py-2 border-b shadow-sm bg-white mt-0 top-0">
+    <nav className="flex w-full fixed items-center justify-between px-6 py-2 border-b border-gray-200 shadow-sm bg-white mt-0 top-0">
       {/* Left: Logo & Search */}
       <div className="flex items-center space-x-6">
         {/* Logo */}
