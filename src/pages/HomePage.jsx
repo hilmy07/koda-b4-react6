@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import placeholder from "../assets/placeholder.png";
 
 // Import thumbnails
 import thumb1 from "../assets/gpt.png";
@@ -15,6 +16,10 @@ const imageMap = {
   thumb1,
   thumb2,
   thumb3,
+};
+
+const authorImageMap = {
+  "mohamed bakry": bakri,
 };
 
 function Homepage() {
@@ -41,11 +46,13 @@ function Homepage() {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)+/g, "");
 
+  const slugifyAuthor = (name) => name.toLowerCase().replace(/\s+/g, "-");
+
   return (
     <div className="bg-white text-black min-h-screen">
       <Navbar />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col lg:flex-row gap-12 mt-10">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col lg:flex-row gap-12 mt-20">
         {/* Left: Articles */}
         <section className="flex-1 min-w-0 space-y-8">
           {loading ? (
@@ -56,21 +63,18 @@ function Homepage() {
                 key={article.id}
                 className="flex flex-col sm:flex-row gap-4 border-b pb-6"
                 onClick={() => {
-                  if (index === 0) {
-                    setLoading(true);
-                    const slug = slugify(article.title);
-                    const author = article.author.toLowerCase();
-
-                    setTimeout(() => {
-                      navigate(`/@${author}/${slug}`);
-                    }, 300);
-                  }
+                  const slug = slugify(article.title);
+                  const authorSlug = slugifyAuthor(article.author);
+                  navigate(`/${authorSlug}/${slug}`);
                 }}
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <img
-                      src={bakri}
+                      src={
+                        authorImageMap[article.author.toLowerCase()] ||
+                        placeholder
+                      }
                       alt="Author"
                       className="w-6 h-6 rounded-full"
                     />
@@ -92,7 +96,7 @@ function Homepage() {
                 <img
                   src={imageMap[article.thumbnail]}
                   alt="Thumbnail"
-                  className="w-full sm:w-28 h-24 object-cover rounded-md"
+                  className="w-full sm:w-32 aspect-[4/3] object-cover rounded-md"
                 />
               </div>
             ))

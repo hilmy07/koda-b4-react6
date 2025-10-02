@@ -1,62 +1,112 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import gpt from "../assets/gpt.png";
 import bakri from "../assets/bakri.png";
+import placeholder from "../assets/placeholder.png";
+
+// Gambar thumbnail
+import thumb1 from "../assets/gpt.png";
+import thumb2 from "../assets/thumb2.png";
+import thumb3 from "../assets/thumb3.png";
+
+// Peta thumbnail
+const imageMap = {
+  thumb1,
+  thumb2,
+  thumb3,
+};
+
+// Mapping author → foto khusus
+const authorImageMap = {
+  "mohamed bakry": bakri,
+};
 
 function DetailPage() {
+  const { author, slug } = useParams();
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const slugify = (text) =>
+    text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
+
+  const slugifyAuthor = (name) => name.toLowerCase().replace(/\s+/g, "-");
+
+  useEffect(() => {
+    fetch("/articles.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const match = data.find((item) => {
+          const generatedSlug = slugify(item.title);
+          const generatedAuthor = slugifyAuthor(item.author);
+          return generatedSlug === slug && generatedAuthor === author;
+        });
+
+        setArticle(match || null);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching article:", err);
+        setLoading(false);
+      });
+  }, [author, slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-500">
+        Loading article...
+      </div>
+    );
+  }
+
+  if (!article) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-500">
+        Article not found.
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Navbar */}
       <Navbar />
-
-      {/* Container */}
       <div className="max-w-3xl mx-auto px-4 py-10">
-        {/* Title & Subtitle */}
-        <div className="mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold leading-snug">
-            Your ChatGPT History Just Went Public on Google. Here’s What I Did
-            in 10 Mins to Fix It.
-          </h1>
-          <p className="text-gray-500 mt-3 text-sm">
-            Safety/Privacy Check Prompt Template Is Included
-          </p>
-        </div>
+        <h1 className="text-3xl md:text-4xl font-bold leading-snug">
+          {article.title}
+        </h1>
+        <p className="text-gray-500 mt-3 text-sm">{article.subtitle}</p>
 
         {/* Author Info */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mt-6 mb-8">
           <img
-            src={bakri}
-            alt="Author"
+            src={authorImageMap[article.author.toLowerCase()] || placeholder}
+            alt={article.author}
             className="w-10 h-10 rounded-full object-cover"
           />
           <div>
-            <p className="text-sm font-medium">Mohamed Bakry</p>
-            <p className="text-xs text-gray-500">7 min read · Aug 9, 2025</p>
+            <p className="text-sm font-medium">{article.author}</p>
+            <p className="text-xs text-gray-500">
+              7 min read · {article.date}, 2025
+            </p>
           </div>
         </div>
 
-        {/* Hero Image */}
+        {/* Hero Thumbnail */}
         <div className="mb-8">
-          <img src={gpt} alt="Hero" className="rounded-lg shadow" />
+          <img
+            src={imageMap[article.thumbnail]}
+            alt="Thumbnail"
+            className="rounded-lg shadow"
+          />
         </div>
 
-        {/* Article Content */}
-        <article className="prose prose-lg max-w-none p-3">
-          <p className="mt-4 ml-7 mr-7">
-            I was checking my morning emails when I spotted it: a Slack message
-            from my teammate. It had a screenshot from a Google search.
-          </p>
-          <p className="mt-4 ml-7 mr-7">“Is this your ChatGPT conversation?”</p>
-          <p className="mt-4 ml-7 mr-7">My stomach dropped.</p>
-          <p className="mt-4 ml-7 mr-7">
-            There, it was a shared ChatGPT link I’d created last month to get
-            feedback on a client proposal. Indexed by Google. Searchable by
-            anyone.
-          </p>
-          <p className="mt-4 ml-7 mr-7">
-            The talk covered strategy details and sensitive info about my
-            client. I really didn’t want that out on the internet.
-          </p>
+        {/* Content */}
+        <article className="prose prose-lg max-w-none">
+          {article.content.split("\n").map((para, idx) => (
+            <p key={idx}>{para}</p>
+          ))}
         </article>
       </div>
     </div>

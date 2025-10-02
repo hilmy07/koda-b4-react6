@@ -7,7 +7,8 @@
     "date": "Aug 9",
     "views": 580,
     "comments": 24,
-    "thumbnail": "thumb1"
+    "thumbnail": "thumb1",
+    "content": "I was checking my morning emails when I spotted it: a Slack message from my teammate. It had a screenshot from a Google search. “Is this your ChatGPT conversation?” My stomach dropped. There, it was a shared ChatGPT link I’d created last month to get feedback on a client proposal. Indexed by Google. Searchable by anyone. The talk covered strategy details and sensitive info about my client. I really didn’t want that out on the internet. I immediately went to the link and made it private. Then, I ran a quick search on my name and ChatGPT to check if anything else had leaked. Luckily, that was the only one. From there, I did three things to ensure this never happens again: (1) I stopped sharing ChatGPT links publicly. (2) I reviewed my past shares. (3) I turned off 'Share links by default' in my ChatGPT settings. You should too. Safety first."
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "date": "Jun 14",
     "views": 17600,
     "comments": 664,
-    "thumbnail": "thumb2"
+    "thumbnail": "thumb2",
+    "content": "Most people try to avoid discomfort. They want things easy. But here’s the paradox: doing hard things now makes your life easier later. Discipline, consistency, saying no to distractions—these are difficult in the moment but pay off exponentially over time. When you train yourself to lean into hard things, you build mental toughness. You become resilient. You learn faster. That’s why successful people deliberately seek challenges. They don’t avoid the hard path. They choose it. Waking up early, going to the gym, learning new skills, having difficult conversations—these things sharpen you. Life isn’t supposed to be comfortable all the time. Comfort is the enemy of progress. So the next time you’re tempted to choose easy, ask yourself: what would my future self thank me for?"
   },
   {
     "id": 3,
@@ -27,6 +29,7 @@
     "date": "Jul 28",
     "views": 14300,
     "comments": 560,
-    "thumbnail": "thumb3"
+    "thumbnail": "thumb3",
+    "content": "Creating a life you love isn’t about luck—it’s about intention. Step one: get crystal clear on what matters to you. Not what society wants. Not what your parents want. What *you* want. Then, start aligning your daily actions with those values. Tiny decisions, compounded over time, build your life. Start by eliminating the noise: mindless scrolling, toxic people, self-doubt. Replace it with mindful practices, positive routines, and brave choices. You don’t need to have everything figured out. You just need to start. Take one step today that your future self will be proud of. Maybe it’s writing that first blog post. Applying to that job. Saying no to something draining you. You don’t build a meaningful life by accident. You build it by design—one courageous choice at a time."
   }
 ]

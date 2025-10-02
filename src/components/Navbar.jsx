@@ -1,5 +1,6 @@
 import React from "react";
 import foto from "../assets/fotoku.png";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   return (
@@ -25,12 +26,16 @@ function SearchBar() {
 }
 
 function Navbar() {
+  const navigate = useNavigate();
   return (
-    <nav className="flex items-center justify-between px-6 py-2 border-b shadow-sm bg-white">
+    <nav className="flex w-full fixed items-center justify-between px-6 py-2 border-b shadow-sm bg-white mt-0 top-0">
       {/* Left: Logo & Search */}
       <div className="flex items-center space-x-6">
         {/* Logo */}
-        <div className="text-2xl font-serif font-bold cursor-pointer">
+        <div
+          className="text-2xl font-serif font-bold cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           Medium
         </div>
         <SearchBar />
